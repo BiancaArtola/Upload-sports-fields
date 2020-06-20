@@ -1,0 +1,11 @@
+.padding {
+    padding: 1%;
+}
+
+.title {
+    padding: 1%
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

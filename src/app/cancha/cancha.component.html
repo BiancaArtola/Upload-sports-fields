@@ -1,0 +1,101 @@
+
+<div class="padding">
+    <div class="row title">
+        <h2>Ingresar una cancha</h2>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit(formulario.value)">
+        <div class="form-group">
+            <label>Nombre de la cancha</label>
+            <input type="text" class="form-control" placeholder="Ingrese el nombre de la cancha"
+                formControlName="nombre">
+        </div>
+        <div class="form-group">
+            <div class="form-group">
+                <label>Deporte</label>
+                <select class="form-control capitalize" formControlName="sport" [(ngModel)]="deporteModelo">
+                    <!-- <option value="" disabled>Seleccione el deporte</option> -->
+
+                    <option *ngFor="let deporte of deportes" class="capitalize" [ngValue]="deporte">{{deporte}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea class="form-control" rows="3"
+                placeholder="Ingrese una descripción de la cancha que será visible a los usuarios"
+                formControlName="descripcion"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Teléfono</label>
+            <input type="number" class="form-control" placeholder="Ingrese el telefono del complejo"
+                formControlName="telefono">
+        </div>
+        <div class="form-group">
+            <label>Ubicacion</label>
+            <input type="text" class="form-control" placeholder="Ingrese la ubicacion de la cancha"
+                formControlName="ubicacion">
+        </div>
+        <div class="form-group">
+            <label>Coordenadas</label>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Latitud" formControlName="latitud">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Longitud" formControlName="longitud">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Precio</label>
+            <input type="number" class="form-control" placeholder="Ingrese el precio de la cancha en pesos ($)"
+                formControlName="precio">
+        </div>
+        <div class="form-group">
+            <label>Imagen</label>
+            <input type="text" class="form-control" placeholder="Ingrese el link de la imagen con formato .jpg o .png"
+                formControlName="imagen">
+        </div>
+        <div class="form-group">
+            <label>Icono</label>
+            <input type="text" class="form-control" placeholder="Ingrese el icono del complejo con formato .jpg o .png "
+                formControlName="icono">
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" formControlName="techada">
+            <label class="form-check-label">Techada</label>
+        </div>
+
+        <div class="form-group">
+            <div class="form-group">
+                <label>Material del piso</label>
+                <select class="form-control" formControlName="material">
+                    <option value=undefined disabled>Seleccione un tipo de material</option>
+                    <option *ngFor="let material of materialPiso" [ngValue]="material">{{material }}</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group" *ngIf="deporteModelo == 'futbol'">
+            <div class="form-group">
+                <label>Tipo de cancha</label>
+                <select class="form-control" formControlName="tipoCancha">
+                    <option *ngFor="let tipo of tipoCancha">{{ tipo }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" *ngIf="deporteModelo == 'futbol'">
+            <div class="form-group">
+                <label>Cantidad de jugadores</label>
+                <select class="form-control" formControlName="cantidadJugadores">
+                    <option *ngFor="let cantidad of cantidadJugadores" [ngValue]="cantidad">{{cantidad}}</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-dark" [disabled]="!formulario.valid">Enviar formulario</button>
+    </form>
+
+</div>
